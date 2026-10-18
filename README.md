@@ -15,9 +15,9 @@ AI 教程方向是 **真实屏幕证据 + Apple-like 产品视觉 + 清晰标题
   <img src="docs/showcase/gallery-4x3.png" width="640">
 </p>
 
-## 选择风格：AI 教程 / 设计分享
+## 默认风格与设计分享
 
-开始一组封面时先选择风格；已经说明风格或只在修改同一组图片时不重复问。原有 AI 教程的脚本、默认视觉和可选头像合成保持原样。
+本次明确指定的风格优先；补图、返工和继续制作沿用同组已选风格。其他新任务使用配置中的 `style` 默认值；未设置时沿用 AI 教程风格。只有明确要求“设为默认”或“以后都用”时才保存风格偏好，单次指定只影响当前任务。保存时合并更新 `style` 字段，保留 `mode`、`creator_portrait` 和其他配置。设计分享按上述优先级使用；视频主题本身不会触发切换。
 
 设计分享适合网页、视觉作品和交互设计。它采用单一纯色到白色（或深色画面对应黑色）的渐变背景、具有字体和字重对比的标题、左上角圆形作者头像、截图右上角 Logo 贴纸，以及底部署名和年份。
 
@@ -40,19 +40,23 @@ AI 教程方向是 **真实屏幕证据 + Apple-like 产品视觉 + 清晰标题
 
 ### 按平台保存账号和头像
 
-首次选择设计分享时，提供发布平台及对应的准确名称和头像；小红书、公众号、抖音等可分别保存，也可明确要求共用。已保存的平台直接复用，只补缺失项。头像复制到本机资料目录，聊天缓存清理后仍可使用。
+首次使用设计分享时，提供发布平台及对应的准确名称和头像；小红书、公众号、抖音等可分别保存，也可明确要求共用。已保存的平台直接复用，只补缺失项。头像复制到本机资料目录，聊天缓存清理后仍可使用。
 
 本地管理脚本需要 **Python 3.10+ 与 Pillow**（不改变原生成脚本的运行要求）：
 
 ```bash
-python -m pip install -r requirements.txt
-python scripts/creator_profiles.py set --platform xiaohongshu --name "你的账号名称" --avatar "头像.png"
-python scripts/creator_profiles.py set --platform wechat --name "你的公众号" --avatar "公众号头像.png" --signature "你的公众号"
-python scripts/creator_profiles.py list
-python scripts/creator_profiles.py show --platform xiaohongshu
+python3 -m pip install -r requirements.txt
+python3 scripts/creator_profiles.py set --platform xiaohongshu --name "你的账号名称" --avatar "头像.png"
+python3 scripts/creator_profiles.py set --platform wechat --name "你的公众号" --avatar "公众号头像.png" --signature "你的公众号"
+python3 scripts/creator_profiles.py list
+python3 scripts/creator_profiles.py show --platform xiaohongshu
 ```
 
 资料默认保存在 `~/.oil-cover/creators/`，可以通过 `OIL_COVER_CREATOR_HOME` 指定其他本机目录。该工具不登录平台、不发布内容；资料不写入 Skill 或公共仓库。详细规则见 [作者资料说明](references/creator-profiles.md) 与 [设计分享流程](references/design-share-flow.md)。不同平台署名不同则分别生成；三种基础画幅不涵盖所有平台发布位置，有额外规格时按要求适配。
+
+## 适用边界与数据
+
+本 Skill 制作封面，不登录或发布平台内容，也不负责视频剪辑。脚本模式会把选定的屏幕帧和产品 Logo 发送给所选视觉与生图服务；原版创作者头像只在本地合成。设计分享使用宿主的图像工具，作者头像会作为参考图发送，细节可能重绘。账号资料保存在本机，公共示例不作为使用者的默认身份。
 
 ## 特点
 

@@ -4,7 +4,7 @@
 
 ## 制作时如何询问
 
-先完成风格选择。设计分享风格首次使用时，一次询问：
+先按主 Skill 的规则确定本次风格。首次使用设计分享风格时，一次询问：
 
 > 准备用于哪些平台？请分别提供每个平台的账号名称和头像。小红书、公众号、抖音等可以不同；也可以明确告诉我哪些平台共用一套。
 
@@ -12,14 +12,14 @@
 
 ## 本地入口
 
-`SKILL_DIR` 为本次使用的 Skill 目录；下列 Python 命令在 Windows、macOS、Linux 均可用。导入头像需要 Pillow，可用 `python -m pip install Pillow` 安装。
+`SKILL_DIR` 为本次使用的 Skill 目录。先确认版本不低于 3.10 的解释器，下列 `<PYTHON>` 替换为该命令：macOS / Linux 通常是 `python3`，Windows 通常是 `py -3`。导入头像需要 Pillow，可用 `<PYTHON> -m pip install Pillow` 安装。
 
 ```bash
-python "<SKILL_DIR>/scripts/creator_profiles.py" list
-python "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --name "你的账号名称" --avatar "<头像图片路径>"
-python "<SKILL_DIR>/scripts/creator_profiles.py" set --platform wechat --name "你的公众号名称" --avatar "<公众号头像路径>" --signature "你的公众号名称"
-python "<SKILL_DIR>/scripts/creator_profiles.py" set --platform douyin --name "你的抖音名称" --avatar "<抖音头像路径>"
-python "<SKILL_DIR>/scripts/creator_profiles.py" show --platform xiaohongshu
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" list
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --name "你的账号名称" --avatar "<头像图片路径>"
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" set --platform wechat --name "你的公众号名称" --avatar "<公众号头像路径>" --signature "你的公众号名称"
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" set --platform douyin --name "你的抖音名称" --avatar "<抖音头像路径>"
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" show --platform xiaohongshu
 ```
 
 支持中文别名：小红书 → `xiaohongshu`；公众号 → `wechat`；抖音 → `douyin`；B站 → `bilibili`；通用 → `default`。其他平台用英文、数字、下划线或连字符命名。`default` 不自动覆盖任何平台资料。
@@ -27,8 +27,8 @@ python "<SKILL_DIR>/scripts/creator_profiles.py" show --platform xiaohongshu
 首次 `set` 需要名称和头像，后续可仅更换一项：
 
 ```bash
-python "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --name "新的名称"
-python "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --avatar "<新的头像路径>"
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --name "新的名称"
+<PYTHON> "<SKILL_DIR>/scripts/creator_profiles.py" set --platform xiaohongshu --avatar "<新的头像路径>"
 ```
 
 改名时默认署名同步为 `@新名称`；需要特殊署名就同时传 `--signature`。只改头像时保留原名称和署名。本工具只管理封面显示资料，不登录平台、不上传图片、不发布帖子。
